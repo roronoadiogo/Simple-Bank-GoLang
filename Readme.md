@@ -5,6 +5,7 @@ This project it's to understand the mainly tools used for language GoLang to API
 ## :wrench: Setup and Tools used
 
 - GoLang 1.20
+- SQLC to generate models (in discussion to check other GO ORM's)
 - MigrationDB
 - Docker
     - Postgres Alpine 12
