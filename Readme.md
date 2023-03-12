@@ -22,6 +22,25 @@ This list does not complete yet, will increase with the time.
 
 - Try adopt the best pratices for GoLang Projects
 
+## :rocket: Using the project
+
+- Open a terminal in the directory root this project and run:
+```console
+user@machine:~$ make postgres
+
+```
+- Create the database in the image of postgres
+```console
+user@machine:~$ make createdb
+
+```
+- Run the migrateDB to use the version of database until the moment
+```console
+user@machine:~$ make migratedb
+
+```
+This documentation it's not complete, I'm still working on this resource to automatization better
+
 ## :floppy_disk: Database initial version
 <img src="docs/diagrams/database/database_version_1.png" alt="Initial version" width="700" height="300" />
 
