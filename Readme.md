@@ -22,6 +22,8 @@ This list does not complete yet, will increase with the time.
 
 - Try adopt the best pratices for GoLang Projects
 
+- Understand the tests with GoLang
+
 ## :rocket: Using the project
 
 - Open a terminal in the directory root this project and run:
