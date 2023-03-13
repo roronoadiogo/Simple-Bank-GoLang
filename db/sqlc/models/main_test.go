@@ -3,7 +3,10 @@ package models
 import (
 	"database/sql"
 	"log"
+	"os"
 	"testing"
+
+	_ "github.com/lib/pq"
 )
 
 const (
@@ -23,4 +26,5 @@ func TestMain(m *testing.M) {
 
 	testQueries = New(conn)
 
+	os.Exit(m.Run())
 }
