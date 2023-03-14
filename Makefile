@@ -9,6 +9,9 @@ migrateup:
 migratedown:
 	migrate -path db/migrations -database "postgresql://root:secret@localhost:5432/bank_account?sslmode=disable" -verbose down
 
+test:
+	go test -v -cover
+	
 sqlc:
 	sqlc generate
 
