@@ -6,6 +6,12 @@ INSERT INTO accounts (
 )
 RETURNING *;
 
+-- name: UpdateAccount :one
+UPDATE accounts SET 
+owner = $2, balance = $3, currency = $4
+WHERE id= $1
+RETURNING *;
+
 -- name: GetAccount :one
 SELECT * FROM accounts
 WHERE id = $1 LIMIT 1;
