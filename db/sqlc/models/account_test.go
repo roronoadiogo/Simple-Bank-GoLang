@@ -103,13 +103,3 @@ func TestListAccountsOnSuccess(t *testing.T) {
 		require.NotEmpty(t, account)
 	}
 }
-
-func TestListAccountsOnFailure(t *testing.T) {
-
-	db, err := sql.Open("postgres", "root@account_bank")
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-}
