@@ -46,6 +46,50 @@ func (q *Queries) DeleteEntry(ctx context.Context, id int64) error {
 	return err
 }
 
+const getEntriesFromAccount = `-- name: GetEntriesFromAccount :many
+SELECT e.id, e.amount, e.created_at FROM entries AS e
+INNER JOIN accounts AS a
+ON a.id = e.account_id
+WHERE a.id = $1
+LIMIT $2
+OFFSET $3
+`
+
+type GetEntriesFromAccountParams struct {
+	ID     int64 `db:"id" json:"id"`
+	Limit  int32 `db:"limit" json:"limit"`
+	Offset int32 `db:"offset" json:"offset"`
+}
+
+type GetEntriesFromAccountRow struct {
+	ID        int64        `db:"id" json:"id"`
+	Amount    int64        `db:"amount" json:"amount"`
+	CreatedAt sql.NullTime `db:"created_at" json:"created_at"`
+}
+
+func (q *Queries) GetEntriesFromAccount(ctx context.Context, arg GetEntriesFromAccountParams) ([]GetEntriesFromAccountRow, error) {
+	rows, err := q.db.QueryContext(ctx, getEntriesFromAccount, arg.ID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []GetEntriesFromAccountRow
+	for rows.Next() {
+		var i GetEntriesFromAccountRow
+		if err := rows.Scan(&i.ID, &i.Amount, &i.CreatedAt); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getEntry = `-- name: GetEntry :one
 SELECT id, account_id, amount, created_at FROM entries
 WHERE id = $1 LIMIT 1
