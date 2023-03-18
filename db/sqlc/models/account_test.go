@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createRandomAccount(t *testing.T) Account {
+func CreateRandomAccount(t *testing.T) Account {
 
 	arg := CreateAccountParams{
 		Owner:    util.RandomOwner(),
@@ -34,11 +34,11 @@ func createRandomAccount(t *testing.T) Account {
 }
 
 func TestCreateAccountOnSuccess(t *testing.T) {
-	createRandomAccount(t)
+	CreateRandomAccount(t)
 }
 
 func TestGetAccountOnSuccess(t *testing.T) {
-	accountToDb := createRandomAccount(t)
+	accountToDb := CreateRandomAccount(t)
 	accountFromDb, err := testQueries.GetAccount(context.Background(), accountToDb.ID)
 
 	require.NoError(t, err, "Error in the testing retrieving the Account from database.")
@@ -53,7 +53,7 @@ func TestGetAccountOnSuccess(t *testing.T) {
 }
 
 func TestUpdateAccountOnSuccess(t *testing.T) {
-	accountToDb := createRandomAccount(t)
+	accountToDb := CreateRandomAccount(t)
 
 	accountUpdated := UpdateAccountParams{
 		ID:      accountToDb.ID,
@@ -73,7 +73,7 @@ func TestUpdateAccountOnSuccess(t *testing.T) {
 }
 
 func TestDeleteAccountOnSuccess(t *testing.T) {
-	accountToDb := createRandomAccount(t)
+	accountToDb := CreateRandomAccount(t)
 
 	err := testQueries.DeleteAccount(context.Background(), accountToDb.ID)
 	require.NoError(t, err, "Error in delete account test, the account in the database.")
@@ -87,7 +87,7 @@ func TestDeleteAccountOnSuccess(t *testing.T) {
 
 func TestListAccountsOnSuccess(t *testing.T) {
 	for i := 0; i < 10; i++ {
-		createRandomAccount(t)
+		CreateRandomAccount(t)
 	}
 
 	listAccounts := ListAccountsParams{
