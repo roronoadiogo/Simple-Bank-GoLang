@@ -7,6 +7,7 @@ This project it's to understand the mainly tools used for language GoLang to API
 - GoLang 1.20
 - SQLC to generate models (in discussion to check other GO ORM's)
 - MigrationDB
+- GoDotEnv
 - Docker
     - Postgres Alpine 12
 
