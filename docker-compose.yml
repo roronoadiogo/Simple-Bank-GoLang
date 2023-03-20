@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      target: builder
+    
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: bank_account
+
+  db:
+    image: postgres:12-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/var/lib/postgres/data
+    environment:
+      - POSTGRES_PASSWORD=secret
+  
+volumes:
+  dbdata:
