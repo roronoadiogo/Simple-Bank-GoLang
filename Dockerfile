@@ -5,5 +5,4 @@ ADD . /app
 
 WORKDIR /app
 
-# Run the migrations
 CMD ["go", "version"]
