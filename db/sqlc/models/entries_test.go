@@ -23,8 +23,8 @@ func createRandomEntry(t *testing.T) Entry {
 	require.NoError(t, err, "Error in the test, cannot create the entry")
 	require.NotEmpty(t, entry)
 
-	require.Equal(t, entryGeneric.AccountID, entryGeneric.AccountID)
-	require.Equal(t, entryGeneric.Amount, entryGeneric.Amount)
+	require.Equal(t, entry.AccountID, entryGeneric.AccountID)
+	require.Equal(t, entry.Amount, entryGeneric.Amount)
 
 	require.NotZero(t, entry.AccountID)
 	require.NotZero(t, entry.CreatedAt)
